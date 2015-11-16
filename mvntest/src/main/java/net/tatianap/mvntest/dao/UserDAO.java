@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package net.tatianap.mvnmephorce.dao;
+package net.tatianap.mvntest.dao;
 
 import java.util.List;
-//import net.tatianap.mvnmephorce.domain.User;
+import net.tatianap.mvntest.domain.User;
 
 
 
@@ -15,6 +15,6 @@ import java.util.List;
  * @author Tatiana
  */
 public interface UserDAO {
-//   public User getUserByID(int id);
-//   public List<User> listUsers();
+   public User getUserByID(int id);
+   public List<User> listUsers();
 }

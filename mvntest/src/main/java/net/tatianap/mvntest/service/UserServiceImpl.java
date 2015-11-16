@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package net.tatianap.mvnmephorce.service;
+package net.tatianap.mvntest.service;
 
 import java.util.List;
+import net.tatianap.mvntest.dao.UserDAO;
+import net.tatianap.mvntest.domain.User;
 
-//import net.tatianap.mvnmephorce.dao.UserDAO;
-//import net.tatianap.mvnmephorce.domain.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 
 
@@ -23,31 +24,31 @@ import org.springframework.stereotype.Service;
 //��� ��������, ������� ������!
 @Service
 public class UserServiceImpl implements UserService {
-//    @Autowired
-//private UserDAO userDAO;
+    @Autowired
+private UserDAO userDAO;
       
-//    public void setUserDAO(UserDAO userDAO) {
-//        this.userDAO = userDAO;
-//    }
-//    /**
-//     * Creates a new instance of ServiceImpl
-//     */
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+    /**
+     * Creates a new instance of ServiceImpl
+     */
 //    public UserServiceImpl() {
 //    }
     
-//    @Override
-//    @Transactional
-//      public User getUserByID(int id) {
+    @Override
+    @Transactional
+      public User getUserByID(int id) {
 //      
-//      return this.userDAO.getUserByID(id);
+      return this.userDAO.getUserByID(id);
 //              
-//      }
+      }
 //      
-//       @Override
-//    @Transactional
-//         public List<User> listUsers(){
+       @Override
+    @Transactional
+         public List<User> listUsers(){
 //      
-//      return this.userDAO.listUsers();
-//              
-//      }
+      return this.userDAO.listUsers();
+              
+      }
 }

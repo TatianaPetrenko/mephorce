@@ -5,22 +5,25 @@
  */
 package net.tatianap.mvntest.controllers;
 
+import java.util.List;
+import net.tatianap.mvntest.domain.User;
+import net.tatianap.mvntest.dao.UserDAOImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author Tatiana
  */
 @Controller
-public class CounterController {
-
-    private int visitorCount = 0;
+public class countController {
+    UserDAOImpl usrserv = new UserDAOImpl();
+    List<User> usrlst = usrserv.listUsers();
 
     @RequestMapping("/index.html")
-    public String index(Model model) {
-        model.addAttribute("visitorCount", visitorCount++);
-        return "WEB-INF/views/counter.jsp";
-    }
+ public ModelAndView listUsers() {
+    return new ModelAndView("WEB-INF/jsp/counter.jsp", "users", usrlst);
+ }
 }
