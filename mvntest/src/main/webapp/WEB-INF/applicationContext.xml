@@ -19,14 +19,14 @@
    
     <context:annotation-config />
         <!-- Определяем папки, в которых будем автоматически искать бины-компоненты (@Component, @Service)  -->
+   
     <context:component-scan base-package="net.tatianap.mvntest.dao" />
-    <context:component-scan base-package="net.tatianap.mvntest.service" />
     
     <tx:annotation-driven transaction-manager="transactionManager" />
 
     <!-- Настройки фабрики сессий Хибернейта -->
     <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation">
             <value>classpath:hibernate.cfg.xml</value>
@@ -45,7 +45,7 @@
         
     <!-- Менеджер транзакций -->
     <bean id="transactionManager"
-          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
