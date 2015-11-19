@@ -32,7 +32,7 @@ public class countController {
 
     @RequestMapping(value = "/index.html")
     public ModelAndView listUsers() {
-        return new ModelAndView("counter", "users", userDao.listUsers());
+        return new ModelAndView("userlist", "users", userDao.listUsers());
     }
 
 }

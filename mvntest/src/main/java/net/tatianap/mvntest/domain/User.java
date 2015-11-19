@@ -6,6 +6,7 @@
 package net.tatianap.mvntest.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -16,14 +17,18 @@ import javax.persistence.*;
 @Table(name = "users") //в таблице users
 public class User implements Serializable {
  
-@Id @GeneratedValue //следующая переменная соответствует первичному ключу, генерируемая
-   @Column(name = "id") // соответсвует колонке id; далее так же
+@Id @GeneratedValue 
+   @Column(name = "id") 
      private Integer id;   
 @Column(name = "rate")
     private Integer rate;
    @Column(name = "name")
     private String name;
-
+   @Column(name = "role")
+    private String role;
+@ManyToMany
+   @JoinTable(name = "usr_proj")
+   private Set<Project> projects;
 
  
   public User() {
@@ -44,7 +49,14 @@ public class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getRole() {
+        return role;
+    }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
    
     public Integer getRate() {
         return rate;
@@ -54,4 +66,12 @@ public class User implements Serializable {
       this.rate = rate;
   }
 
+     public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
+    
 }
