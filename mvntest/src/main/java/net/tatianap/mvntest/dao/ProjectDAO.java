@@ -5,16 +5,13 @@
  */
 package net.tatianap.mvntest.dao;
 
-import java.util.List;
-import net.tatianap.mvntest.domain.User;
+import net.tatianap.mvntest.domain.Project;
 
 /**
  *
  * @author Tatiana
  */
-public interface UserDAO {
+public interface ProjectDAO {
 
-    public User getUserByID(int id);
-
-    public List<User> listUsers();
+    public Project getProjectByID(int id);
 }

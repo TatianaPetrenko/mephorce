@@ -5,7 +5,7 @@ package net.tatianap.mvntest.dao;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import net.tatianap.mvntest.domain.Project;
 import org.hibernate.SessionFactory;
 import net.tatianap.mvntest.domain.User;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -18,23 +18,32 @@ import org.hibernate.cfg.AnnotationConfiguration;
  */
 public class HibernateUtil {
 
-    private static final SessionFactory sessionFactory;
-    
-    static {
+    private static SessionFactory sessionFactory;
+
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) sessionFactory = buildSessionFactory();
+        return sessionFactory;
+    }
+
+    private static SessionFactory buildSessionFactory() {
+
         try {
-              AnnotationConfiguration aconf = new AnnotationConfiguration()
-              .addAnnotatedClass(User.class);
+            AnnotationConfiguration aconf = new AnnotationConfiguration()
+                    .addAnnotatedClass(User.class)
+                    .addAnnotatedClass(Project.class);
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
             // config file.
-            sessionFactory = aconf.configure().buildSessionFactory();
+            return aconf.configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
+
+    public static void shutdownSession() {
     
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+        getSessionFactory().close();
+    
     }
 }

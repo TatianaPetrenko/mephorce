@@ -6,6 +6,7 @@
 package net.tatianap.mvntest.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -16,22 +17,21 @@ import javax.persistence.*;
 @Entity //соответствует записи в базе
 @Table(name = "users") //в таблице users
 public class User implements Serializable {
- 
-@Id @GeneratedValue 
-   @Column(name = "id") 
-     private Integer id;   
-@Column(name = "rate")
-    private Integer rate;
-   @Column(name = "name")
-    private String name;
-   @Column(name = "role")
-    private String role;
-@ManyToMany
-   @JoinTable(name = "usr_proj")
-   private Set<Project> projects;
 
- 
-  public User() {
+    @Column(name = "id")
+    @Id
+    private Integer id;
+    @Column(name = "rate")
+    private Integer rate;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "role")
+    private String role;
+
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    private Set<Project> projects = new HashSet<>();
+
+    public User() {
     }
 
     public Integer getId() {
@@ -49,7 +49,7 @@ public class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public String getRole() {
         return role;
     }
@@ -57,21 +57,21 @@ public class User implements Serializable {
     public void setRole(String role) {
         this.role = role;
     }
-   
+
     public Integer getRate() {
         return rate;
     }
 
     public void setRate(Integer rate) {
-      this.rate = rate;
-  }
+        this.rate = rate;
+    }
 
-     public Set<Project> getProjects() {
+    public Set<Project> getProjects() {
         return projects;
     }
 
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
-    
+
 }

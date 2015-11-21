@@ -6,6 +6,7 @@
 package net.tatianap.mvntest.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -14,52 +15,57 @@ import javax.persistence.*;
  * @author Tatiana
  */
 @Entity //соответствует записи в базе
-@Table(name = "projects") 
+@Table(name = "projects")
 public class Project implements Serializable {
-    @Id @GeneratedValue //следующая переменная соответствует первичному ключу, генерируемая
-   @Column(name = "id") // соответсвует колонке id; далее так же
-     private Integer id;   
-@Column(name = "description")
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "description")
     private String description;
-   @Column(name = "pr_conditions")
+    @Column(name = "pr_conditions")
     private String conds;
-   private Set<User> users;
-    
-     public Project() {
+
+    @ManyToMany
+    @JoinTable(name = "usr_proj",
+            joinColumns = @JoinColumn(name = "prj_id"),
+            inverseJoinColumns = @JoinColumn(name = "usr_id"))
+    private Set<User> users = new HashSet<>();
+
+    public Project() {
     }
-   
-      public Integer getId() {
+
+    public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
-    
-      public String getDesc() {
+
+    public String getDescription() {
         return description;
     }
 
-    public void setDesc(String desc) {
-        this.description = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
-    
-    @ManyToMany(mappedBy = "projects")
-      public Set<User> getPRUsers() {
+
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setPRUsers(Set<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
-    
-      public String getConds() {
+
+    public String getConds() {
         return conds;
     }
 
     public void setConds(String conds) {
         this.conds = conds;
     }
-    
-    
+
 }

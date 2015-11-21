@@ -13,7 +13,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Список пользователей</title>
-    <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -24,7 +24,7 @@
         <div>
 		<ul>
 		<li style="display: inline-block"><a href="gear.html" >Главная</a></li>	
-		<li style="display: inline-block; padding: 4px; background-color: #999"><a href="gear.html">Сообщество</a></li>
+		<li style="display: inline-block; padding: 4px; background-color: #999"><a href="project.html">Сообщество</a></li>
 		<li style="display: inline-block"><a href="gear.html">Р-та с заказч.</a></li>
 		<li style="display: inline-block"><a href="gear.html">Выход</a></li>
 		</ul>

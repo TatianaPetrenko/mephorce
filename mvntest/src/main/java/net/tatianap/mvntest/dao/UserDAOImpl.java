@@ -22,27 +22,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDAOImpl implements UserDAO {
 
-    private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
-    }
+    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     @Override
     public User getUserByID(int id) {
-        Session ses = sessionFactory.getCurrentSession();
+        //   Session ses = sessionFactory.getCurrentSession();
         User usr = null;
 
         try {
 
-            usr = (User) ses.get(User.class, 1);
+            usr = (User) sessionFactory.getCurrentSession().get(User.class, id);
 
         } catch (Exception e) {
             System.out.println("РњР°РјР°, СЏ СѓРїР°Р», С‡С‚Рѕ СЃ Р±Р°Р·РѕР№?");
-        } finally {
-            if (ses != null && ses.isOpen()) {
-                ses.close();
-            }
 
         }
         return usr;
@@ -51,9 +44,8 @@ public class UserDAOImpl implements UserDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<User> listUsers() {
-        Session ses = null;
         List<User> usr = null;
-
+Session ses = null;
         try {
             ses = HibernateUtil.getSessionFactory().openSession();
             Criteria criteria = ses.createCriteria(User.class);
@@ -64,7 +56,7 @@ public class UserDAOImpl implements UserDAO {
             System.out.println("Мама, я упал, что с базой?");
         } finally {
             if (ses != null && ses.isOpen()) {
-                ses.close();
+             ses.close();
             }
 
         }
