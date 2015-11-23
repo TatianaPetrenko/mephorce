@@ -8,7 +8,10 @@ package net.tatianap.mvntest.controllers;
 import net.tatianap.mvntest.dao.HibernateUtil;
 import net.tatianap.mvntest.dao.ProjectDAOImpl;
 import net.tatianap.mvntest.dao.UserDAOImpl;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,12 +24,14 @@ public class countController {
 
     private UserDAOImpl userDao = new UserDAOImpl();
     public ProjectDAOImpl prjDao = new ProjectDAOImpl();
+    public SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+//    Session ses = sessionFactory.openSession();
 
     @RequestMapping(value = "/index.html")
     public ModelAndView listUsers() {
         return new ModelAndView("userlist", "users", userDao.listUsers());
     }
-    
+
     @RequestMapping(value = "/project.html")
     public ModelAndView projects() {
         return new ModelAndView("project", "project", prjDao.getProjectByID(1));

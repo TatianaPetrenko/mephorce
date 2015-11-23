@@ -14,6 +14,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Список пользователей</title>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/resources/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
+    <script src="${pageContext.request.contextPath}/resources/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.dataTables.min.js"></script>
+    
+    <script type="text/javascript" language="javascript">
+	
+$(document).ready(function() {
+	$('#usrs').DataTable(
+          
+                );
+} );
+
+	</script>
 </head>
 
 <body>
@@ -35,7 +48,7 @@
             <td id="contentLeft">
                 <div id="mainContent">
 					
-       <table>
+       <table id="usrs" width="600px">
  <thead>
  <tr>
      <td>Имя</td>
@@ -45,8 +58,8 @@
    </tr>
  </thead>
    <c:forEach items="${users}" var="user">
-   <tr>
-     <td>${user.name}</td>
+   <tr >
+     <td cellpadding="20px">${user.name}</td>
      <td>${user.rate}</td>
      <td><a href="#up"><img src="..\resources\1uparrow.png"</a></td>
      

@@ -47,7 +47,7 @@ public class UserDAOImpl implements UserDAO {
         List<User> usr = null;
 Session ses = null;
         try {
-            ses = HibernateUtil.getSessionFactory().openSession();
+            ses = sessionFactory.openSession();
             Criteria criteria = ses.createCriteria(User.class);
 
             usr = (List<User>) criteria.list();

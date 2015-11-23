@@ -27,7 +27,7 @@ public class Project implements Serializable {
     @Column(name = "pr_conditions")
     private String conds;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usr_proj",
             joinColumns = @JoinColumn(name = "prj_id"),
             inverseJoinColumns = @JoinColumn(name = "usr_id"))
