@@ -34,7 +34,7 @@ public class ProjectDAOImpl implements ProjectDAO {
         try {
             ses = sessionFactory.openSession();
             pr = (Project) ses.get(Project.class, id);
-
+                   
             Set<User> users;
 
             users = pr.getUsers();
@@ -53,4 +53,28 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public void updateProject(int id) {
+
+        Session ses = null;
+        Project pr = null;
+        try {
+           
+            ses = sessionFactory.openSession();
+            pr = (Project) ses.get(Project.class, id);
+            pr.setStatus("Сдан");
+            ses.beginTransaction();
+            ses.saveOrUpdate(pr);
+            ses.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("РњР°РјР°, СЏ СѓРїР°Р», С‡С‚Рѕ СЃ Р±Р°Р·РѕР№?");
+            System.out.println(e.getLocalizedMessage());
+        } finally {
+            if (ses != null && ses.isOpen()) {
+                ses.close();
+            }
+
+        }
+    }
 }

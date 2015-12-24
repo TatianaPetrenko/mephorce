@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Table(name = "users") //в таблице users
 public class User implements Serializable {
 
-    @Column(name = "id")
+    @Column(name = "usr_id")
     @Id
     private Integer id;
     @Column(name = "rate")
@@ -30,6 +30,9 @@ public class User implements Serializable {
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Project> projects = new HashSet<>();
+
+
+//    private Task task;
 
     public User() {
     }
@@ -73,5 +76,13 @@ public class User implements Serializable {
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
+
+//    public Task getTask() {
+//        return task;
+//    }
+//
+//    public void setTask(Task task) {
+//        this.task = task;
+//    }
 
 }

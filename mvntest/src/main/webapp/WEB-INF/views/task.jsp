@@ -23,10 +23,10 @@
             <tr><td id="mainMenu">
                     <div>
                         <ul>
-                            <li style="display: inline-block"><a href="index" >"Главная"</a></li>	
-                            <li style="display: inline-block; padding: 4px; background-color: #999"><a href="#">Сообщество</a></li>
-                            <li style="display: inline-block"><a href="work.html">Р-та с заказч.</a></li>
-                            <li style="display: inline-block"><a href="#">Выход</a></li>
+                            <li style="display: inline-block"><a href="index.html" >"Главная"</a></li>	
+                            <li style="display: inline-block; padding: 4px; background-color: #999"><a href="gear.html">Сообщество</a></li>
+                            <li style="display: inline-block"><a href="gear.html">Р-та с заказч.</a></li>
+                            <li style="display: inline-block"><a href="gear.html">Выход</a></li>
                         </ul>
                     </div>
                 </td></tr>
@@ -34,17 +34,14 @@
                     <table id="contentTable"><tr>
                             <td id="contentLeft">
                                 <div id="mainContent">
-                                    <p>Имя:</p>
-                                    <p>Роль:</p>
-                                    <br><br><hr><br><br>
-
+                                    <p>Имя:</p> ${task.status}
+                                    <p>Роль:</p> ${task.user.role}
                                     <p>Описание проекта № ${project.id}</p>
                                     <p>${project.description}</p>
-
+                                    </iframe>
                                     <p>Условия проекта</p>
                                     <p>${project.conds}</p>
-                                    <p>Статус проекта</p> 
-                                    <p>${project.status}</p>
+                                    </iframe>
                                     <p>Участники проекта</p>
                                     <table>
                                         <thead>
@@ -60,6 +57,7 @@
                                     </table>
 
 
+                                    <input value="Сдать" type="submit" onclick="location.href = '/project/${project.id}/close'">
                                 </div> <!-- mainContent -->
                             </td>
                             <td id="contentRight">
@@ -70,7 +68,7 @@
                                         <li style="display: block"><a href="gear.html">Кнопка мониторинга</a></li>
                                         <li style="display: block"><a href="gear.html">Кнопка пригл./уд.участ.</a></li>
                                         <li style="display: block"><a href="gear.html">Чат с заказчиком</a></li>
-                                        <li style="display: block"><a href="close/${project.id}">Сдать проект</a></li>
+                                        <li style="display: block"><a href="gear.html">Сдать проект</a></li>
                                     </ul>
                                 </div>
                             </td>

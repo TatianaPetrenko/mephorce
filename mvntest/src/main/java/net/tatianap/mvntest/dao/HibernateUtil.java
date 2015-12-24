@@ -6,6 +6,7 @@ package net.tatianap.mvntest.dao;
  * and open the template in the editor.
  */
 import net.tatianap.mvntest.domain.Project;
+import net.tatianap.mvntest.domain.Task;
 import org.hibernate.SessionFactory;
 import net.tatianap.mvntest.domain.User;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -30,6 +31,7 @@ public class HibernateUtil {
         try {
             AnnotationConfiguration aconf = new AnnotationConfiguration()
                     .addAnnotatedClass(User.class)
+                    .addAnnotatedClass(Task.class)
                     .addAnnotatedClass(Project.class);
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
             // config file.

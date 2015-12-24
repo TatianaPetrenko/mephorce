@@ -20,18 +20,21 @@ public class Project implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "prj_id")
     private Integer id;
     @Column(name = "description")
     private String description;
     @Column(name = "pr_conditions")
     private String conds;
+    @Column(name = "status")
+    private String status;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usr_proj",
             joinColumns = @JoinColumn(name = "prj_id"),
             inverseJoinColumns = @JoinColumn(name = "usr_id"))
     private Set<User> users = new HashSet<>();
+
 
     public Project() {
     }
@@ -66,6 +69,14 @@ public class Project implements Serializable {
 
     public void setConds(String conds) {
         this.conds = conds;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

@@ -6,13 +6,13 @@
 package net.tatianap.mvntest.dao;
 
 import net.tatianap.mvntest.domain.Project;
+import net.tatianap.mvntest.domain.Task;
 
 /**
  *
  * @author Tatiana
  */
-public interface ProjectDAO {
+public interface TaskDAO {
 
-    public Project getProjectByID(int id);
-    public void updateProject(int id);
+    public Task getTaskByID(int id);
 }
