@@ -13,7 +13,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Список пользователей</title>
-    <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" type="text/css" />
+    <link href="http://tfgame.rusff.ru/files/0014/74/03/50643.css" rel="stylesheet" type="text/css" />
     <link href="${pageContext.request.contextPath}/resources/css/dataTables.foundation.css" rel="stylesheet" type="text/css" />
     <script src="${pageContext.request.contextPath}/resources/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.dataTables.min.js"></script>
@@ -47,7 +47,10 @@ $(document).ready(function() {
         <table id="contentTable"><tr>
             <td id="contentLeft">
                 <div id="mainContent">
-					
+		                                    <p>Имя:</p> ${ses_user.name}
+                                    <p>Роль:</p> ${ses_user.role}
+                                    <br><hr><br>
+			
        <table id="usrs" width="600px">
  <thead>
  <tr>

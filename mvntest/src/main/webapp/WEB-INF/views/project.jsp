@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Просмотр проекта</title>
-        <link href="/resources/css/main.css" rel="stylesheet" type="text/css" />
+        <link href='http://tfgame.rusff.ru/files/0014/74/03/50643.css' rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -25,7 +25,7 @@
                         <ul>
                             <li style="display: inline-block"><a href="index" >"Главная"</a></li>	
                             <li style="display: inline-block; padding: 4px; background-color: #999"><a href="#">Сообщество</a></li>
-                            <li style="display: inline-block"><a href="work.html">Р-та с заказч.</a></li>
+                            <li style="display: inline-block"><a href="../work.html">Р-та с заказч.</a></li>
                             <li style="display: inline-block"><a href="#">Выход</a></li>
                         </ul>
                     </div>
@@ -34,27 +34,28 @@
                     <table id="contentTable"><tr>
                             <td id="contentLeft">
                                 <div id="mainContent">
-                                    <p>Имя:</p>
-                                    <p>Роль:</p>
-                                    <br><br><hr><br><br>
+                                    <p>Имя:</p> ${ses_user.name}
+                                    <p>Роль:</p> ${ses_user.role}
+                                    <br><hr><br>
 
                                     <p>Описание проекта № ${project.id}</p>
-                                    <p>${project.description}</p>
+                                    <p class="content">${project.description}</p>
 
                                     <p>Условия проекта</p>
-                                    <p>${project.conds}</p>
+                                    <p class="content">${project.conds}</p>
                                     <p>Статус проекта</p> 
                                     <p>${project.status}</p>
                                     <p>Участники проекта</p>
                                     <table>
                                         <thead>
                                             <tr>
-                                                <td>Имя</td>   
+                                                <td>Имя</td> <td>Статус</td>   
                                             </tr>
                                         </thead>
                                         <c:forEach items="${project.users}" var="user">
                                             <tr>
                                                 <td>${user.name}</td>
+                                                <td>${user.task.status}</td>
                                             </tr>
                                         </c:forEach>
                                     </table>

@@ -23,7 +23,12 @@
     <!-- Определяем папки, в которых будем автоматически искать бины-компоненты (@Component, @Service)  -->
    
            
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/resources/**" location="classpath:/resources/" />
+    
+    <mvc:resources mapping="/css/**" location="WEB-INF/resources/css/" />
+       
+       
+    <mvc:default-servlet-handler/>
    
     <context:component-scan base-package="net.tatianap.mvntest" />
     

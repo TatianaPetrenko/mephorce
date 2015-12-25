@@ -30,7 +30,8 @@ public class User implements Serializable {
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Project> projects = new HashSet<>();
-
+@OneToOne (mappedBy="user")
+private Task task;
 
 //    private Task task;
 
@@ -41,6 +42,14 @@ public class User implements Serializable {
         return id;
     }
 
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+    
     public void setId(Integer id) {
         this.id = id;
     }

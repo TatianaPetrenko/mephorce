@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Просмотр проекта</title>
-        <link href="/resources/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="http://tfgame.rusff.ru/files/0014/74/03/50643.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -23,10 +23,10 @@
             <tr><td id="mainMenu">
                     <div>
                         <ul>
-                            <li style="display: inline-block"><a href="index.html" >"Главная"</a></li>	
-                            <li style="display: inline-block; padding: 4px; background-color: #999"><a href="gear.html">Сообщество</a></li>
-                            <li style="display: inline-block"><a href="gear.html">Р-та с заказч.</a></li>
-                            <li style="display: inline-block"><a href="gear.html">Выход</a></li>
+                            <li style="display: inline-block"><a href="/index" >"Главная"</a></li>	
+                            <li style="display: inline-block; padding: 4px; background-color: #999"><a href="#">Сообщество</a></li>
+                            <li style="display: inline-block"><a href="#">Р-та с заказч.</a></li>
+                            <li style="display: inline-block"><a href="#">Выход</a></li>
                         </ul>
                     </div>
                 </td></tr>
@@ -34,42 +34,23 @@
                     <table id="contentTable"><tr>
                             <td id="contentLeft">
                                 <div id="mainContent">
-                                    <p>Имя:</p> ${task.status}
+                                    <p>Имя:</p> ${task.user.name}
                                     <p>Роль:</p> ${task.user.role}
-                                    <p>Описание проекта № ${project.id}</p>
-                                    <p>${project.description}</p>
-                                    </iframe>
-                                    <p>Условия проекта</p>
-                                    <p>${project.conds}</p>
-                                    </iframe>
-                                    <p>Участники проекта</p>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <td>Имя</td>   
-                                            </tr>
-                                        </thead>
-                                        <c:forEach items="${project.users}" var="user">
-                                            <tr>
-                                                <td>${user.name}</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </table>
+                                    <br><hr><br>
+                                    <p>Статус приглашения: ${task.status}</p>
+                                    <p>Описание проекта № ${task.project.id}</p>
+                                    <p class="content">${task.project.description}</p>
+                                                                         <a href="accept/${task.id}">Принять</a>
 
-
-                                    <input value="Сдать" type="submit" onclick="location.href = '/project/${project.id}/close'">
+                                    <input value="Принять" type="submit" onclick="location.href = '../accept/${task.id}'">
+                                <input value="Отклонить" type="submit" onclick="location.href = '../deny/${task.id}'">
+    
                                 </div> <!-- mainContent -->
                             </td>
                             <td id="contentRight">
                                 <div id="sideBar">
                                     <br clear="center">
-                                    <ul>
-                                        <li style="display: block"><a href="gear.html" >Кнопка декомпозиция</a></li>	
-                                        <li style="display: block"><a href="gear.html">Кнопка мониторинга</a></li>
-                                        <li style="display: block"><a href="gear.html">Кнопка пригл./уд.участ.</a></li>
-                                        <li style="display: block"><a href="gear.html">Чат с заказчиком</a></li>
-                                        <li style="display: block"><a href="gear.html">Сдать проект</a></li>
-                                    </ul>
+                                   
                                 </div>
                             </td>
                         </tr></table>

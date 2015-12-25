@@ -22,44 +22,49 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDAOImpl implements UserDAO {
 
-
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     @Override
     public User getUserByID(int id) {
-        //   Session ses = sessionFactory.getCurrentSession();
+        Session ses = null;
         User usr = null;
 
         try {
-
-            usr = (User) sessionFactory.getCurrentSession().get(User.class, id);
-
-        } catch (Exception e) {
-            System.out.println("РњР°РјР°, СЏ СѓРїР°Р», С‡С‚Рѕ СЃ Р±Р°Р·РѕР№?");
-
-        }
-        return usr;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<User> listUsers() {
-        List<User> usr = null;
-Session ses = null;
-        try {
             ses = sessionFactory.openSession();
-            Criteria criteria = ses.createCriteria(User.class);
-
-            usr = (List<User>) criteria.list();
+            usr = (User) ses.get(User.class, id);
 
         } catch (Exception e) {
-            System.out.println("Мама, я упал, что с базой?");
+            System.out.println(e.getLocalizedMessage());
+
         } finally {
             if (ses != null && ses.isOpen()) {
-             ses.close();
+                ses.close();
             }
-
         }
-        return usr;
+            return usr;
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public List<User> listUsers
+        
+            () {
+        List<User> usr = null;
+            Session ses = null;
+            try {
+                ses = sessionFactory.openSession();
+                Criteria criteria = ses.createCriteria(User.class);
+
+                usr = (List<User>) criteria.list();
+
+            } catch (Exception e) {
+                System.out.println("Мама, я упал, что с базой?");
+            } finally {
+                if (ses != null && ses.isOpen()) {
+                    ses.close();
+                }
+
+            }
+            return usr;
+        }
     }
-}

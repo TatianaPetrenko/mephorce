@@ -17,8 +17,10 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -27,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 //@Scope("session")
+@SessionAttributes(types = User.class)
 public class countController {
 
     private UserDAOImpl userDao = new UserDAOImpl();
@@ -35,14 +38,25 @@ public class countController {
 //    Session ses = sessionFactory.openSession();
     public TaskDAOImpl tsDao = new TaskDAOImpl();
 
+  //  userDao.getUserByID(3)
     @RequestMapping(value = "/index")
-    public ModelAndView listUsers() {
-        return new ModelAndView("userlist", "users", userDao.listUsers());
+    public String listUsers(Map<String, Object> map) {
+        map.put("users", userDao.listUsers());
+       map.put("ses_user", userDao.getUserByID(3));
+      
+        return "index";
     }
 
+    
+    @RequestMapping(value = "/work")
+    public String proj() {
+        return "work";
+    }
+    
     @RequestMapping(value = "/project/{id}")
     public String proj(Map<String, Object> map, @PathVariable("id") Integer id) {
-        map.put("project", prjDao.getProjectByID(id));
+        map.put("ses_user", userDao.getUserByID(3));
+        map.put("project", prjDao.getProjectByID(id)); 
         return "project";
     }
 
@@ -58,4 +72,15 @@ public class countController {
         return "task";
     }
 
+    @RequestMapping(value = "/accept/{id}")
+    public String task_accept(Map<String, Object> map, @PathVariable("id") Integer id) {
+        tsDao.acceptTask(id);
+        return "redirect:task/" + id;
+    }
+    @RequestMapping(value = "/deny/{id}")
+    public String task_deny(Map<String, Object> map, @PathVariable("id") Integer id) {
+        tsDao.denyTask(id);
+        return "redirect:/task/" + id;
+    }
+    
 }

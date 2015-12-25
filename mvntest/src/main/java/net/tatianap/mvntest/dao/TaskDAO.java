@@ -5,6 +5,7 @@
  */
 package net.tatianap.mvntest.dao;
 
+import java.util.List;
 import net.tatianap.mvntest.domain.Project;
 import net.tatianap.mvntest.domain.Task;
 
@@ -14,5 +15,11 @@ import net.tatianap.mvntest.domain.Task;
  */
 public interface TaskDAO {
 
+    public List<Task> listTasks();
+
     public Task getTaskByID(int id);
+
+    public void acceptTask(int id);
+
+    public void denyTask(int id);
 }
