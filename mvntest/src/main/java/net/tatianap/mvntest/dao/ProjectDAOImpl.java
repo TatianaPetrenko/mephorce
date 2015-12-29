@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Set;
 import net.tatianap.mvntest.domain.Project;
 import net.tatianap.mvntest.domain.User;
+import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +78,32 @@ public class ProjectDAOImpl implements ProjectDAO {
             }
 
         }
+    }
+    
+    
+     @Override
+    @SuppressWarnings("unchecked")
+    public List<Project> getProjectByModId(int id) {
+
+        Session ses = null;
+        List<Project> pr = null;
+        try {
+
+            ses = sessionFactory.openSession();
+            Criteria criteria = ses.createCriteria(Project.class)
+                    .createCriteria("user").add(Restrictions.eq("id", id))
+            ;
+            pr = criteria.list();
+
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        } finally {
+            if (ses != null && ses.isOpen()) {
+                ses.close();
+            }
+
+        }
+
+        return pr;
     }
 }

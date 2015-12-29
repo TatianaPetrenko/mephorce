@@ -34,8 +34,8 @@
                     <table id="contentTable"><tr>
                             <td id="contentLeft">
                                 <div id="mainContent">
-                                    <p>Имя:</p> ${ses_user.name}
-                                    <p>Роль:</p> ${ses_user.role}
+                                    <p>Имя:</p> ${project.user.name}
+                                    <p>Роль:</p> ${project.user.role}
                                     <br><hr><br>
 
                                     <p>Описание проекта № ${project.id}</p>

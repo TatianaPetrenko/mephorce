@@ -34,16 +34,34 @@ Author     : Tatiana
                     <table id="contentTable"><tr>
                             <td id="contentLeft">
                                 <div id="mainContent">
-                                    <ul>
-                                        <li style="display: block"><a href="project/1" >Проект 1</a></li>
-                                        <li style="display: block"><a href="project/2" >Проект 2</a></li>
-                                    </ul>
+                                    <p>Имя:</p> ${projects[0].user.name}
+                                    <p>Роль:</p> ${projects[0].user.role}
+                                    <br><hr><br>
+
+                                    <h3>Список проектов</h3>
+                                    <div style='width: 80%!important' class="content">
+
+
+                                        <c:forEach items="${projects}" var="project">
+
+                                            <p  style='cursor: pointer' alt="${project.status}" value='../project/${project.id}' onclick="javascript:document.getElementById('stat').innerText = this.getAttribute('alt');" onmousedown="javascript: if (this.getAttribute('alt')=='В работе') {document.getElementById('chain').innerText  = 'Просмотр проекта'; document.getElementById('chain').setAttribute('href', this.getAttribute('value'));} else {    document.getElementById('chain').innerText  = ''; document.getElementById('chain').setAttribute('href', '');   } ">Проект №${project.id}, ${project.description}</p>
+
+                                        </c:forEach> 
+                                    </div>              
+                                    <br>  <br>  <a id='chain'></a>
+
+                                   
                                 </div> <!-- mainContent -->
                             </td>
                             <td id="contentRight">
                                 <div id="sideBar">
-                                    <br clear="center">
+                                    <br clear="center">          <br clear="center">          <br clear="center">          <br clear="center">          <br clear="center">          <br clear="center">          <br clear="center">          <br clear="center">      
+                                    <h3>Описание проекта</h3>
+                                    <div style='width: 200px' class="content"></div>
 
+                                    <h3>Статус проекта</h3>
+                                    <div style='width: 80%!important' id='stat' class="content"></div>
+                                    <br clear="center">          <br clear="center">          <br clear="center">          <br clear="center">
                                 </div>
                             </td>
                         </tr></table>

@@ -16,6 +16,7 @@ import net.tatianap.mvntest.domain.User;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Tatiana
  */
 @Controller
-//@Scope("session")
+@Scope("session")
 @SessionAttributes(types = User.class)
 public class countController {
 
@@ -48,14 +49,14 @@ public class countController {
     }
 
     
-    @RequestMapping(value = "/work")
-    public String proj() {
+    @RequestMapping(value = "/work/{id}")
+    public String work(Map<String, Object> map, @PathVariable("id") Integer id) {
+       map.put("projects", prjDao.getProjectByModId(id)); 
         return "work";
     }
     
     @RequestMapping(value = "/project/{id}")
     public String proj(Map<String, Object> map, @PathVariable("id") Integer id) {
-        map.put("ses_user", userDao.getUserByID(3));
         map.put("project", prjDao.getProjectByID(id)); 
         return "project";
     }

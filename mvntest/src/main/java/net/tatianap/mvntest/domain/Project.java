@@ -37,6 +37,9 @@ public class Project implements Serializable {
 @OneToOne (mappedBy="project")
 private Task task;
 
+ @ManyToOne
+    @JoinColumn(name="mod_id")
+    private User user;
 
     public Project() {
     }
@@ -89,5 +92,12 @@ private Task task;
         this.task = task;
     }
     
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     
 }

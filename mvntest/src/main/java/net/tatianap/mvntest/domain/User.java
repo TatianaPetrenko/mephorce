@@ -33,6 +33,10 @@ public class User implements Serializable {
 @OneToOne (mappedBy="user")
 private Task task;
 
+ @OneToMany(mappedBy = "user")
+    private Set<Project> projectes = new HashSet<Project>(0);
+    
+
 //    private Task task;
 
     public User() {
@@ -86,12 +90,11 @@ private Task task;
         this.projects = projects;
     }
 
-//    public Task getTask() {
-//        return task;
-//    }
-//
-//    public void setTask(Task task) {
-//        this.task = task;
-//    }
+    public Set<Project> getProjectes(){
+        return projectes;
+    }
 
+    public void setProjectes(Set<Project> projectes) {
+        this.projectes = projectes;
+    }
 }
