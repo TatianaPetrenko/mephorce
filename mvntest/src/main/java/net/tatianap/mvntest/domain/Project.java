@@ -34,10 +34,11 @@ public class Project implements Serializable {
             joinColumns = @JoinColumn(name = "prj_id"),
             inverseJoinColumns = @JoinColumn(name = "usr_id"))
     private Set<User> users = new HashSet<>();
-@OneToOne (mappedBy="project")
-private Task task;
+    
+    @OneToOne (mappedBy="project")
+    private Task task;
 
- @ManyToOne
+    @ManyToOne
     @JoinColumn(name="mod_id")
     private User user;
 

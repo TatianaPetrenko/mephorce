@@ -15,17 +15,19 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Tatiana
  */
-@Service
+@Repository
 public class TaskDAOImpl implements TaskDAO {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//    private UserDAOImpl userdao = new UserDAOImpl();
+ @Autowired
+	private SessionFactory sessionFactory;
 
     
     @Override
@@ -95,7 +97,7 @@ Session ses = null;
             ses.saveOrUpdate(ts);
             ses.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("РњР°РјР°, СЏ СѓРїР°Р», С‡С‚Рѕ СЃ Р±Р°Р·РѕР№?");
+            System.out.println("Мама, я упал, что с базой?");
             System.out.println(e.getLocalizedMessage());
         } finally {
             if (ses != null && ses.isOpen()) {
@@ -120,7 +122,7 @@ Session ses = null;
             ses.saveOrUpdate(ts);
             ses.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("РњР°РјР°, СЏ СѓРїР°Р», С‡С‚Рѕ СЃ Р±Р°Р·РѕР№?");
+            System.out.println("Мама, я упал, что с базой?");
             System.out.println(e.getLocalizedMessage());
         } finally {
             if (ses != null && ses.isOpen()) {

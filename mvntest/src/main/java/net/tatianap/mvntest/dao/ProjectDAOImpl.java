@@ -15,17 +15,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Tatiana
  */
-@Service
+@Repository
 public class ProjectDAOImpl implements ProjectDAO {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//    private UserDAOImpl userdao = new UserDAOImpl();
+@Autowired
+	private SessionFactory sessionFactory;
 
     @Override
     @SuppressWarnings("unchecked")
@@ -44,7 +46,7 @@ public class ProjectDAOImpl implements ProjectDAO {
             Hibernate.initialize(pr);
 
         } catch (Exception e) {
-            System.out.println("РњР°РјР°, СЏ СѓРїР°Р», С‡С‚Рѕ СЃ Р±Р°Р·РѕР№?");
+            System.out.println("Мама, я упал, что с базой?");
         } finally {
             if (ses != null && ses.isOpen()) {
                 ses.close();
@@ -70,7 +72,7 @@ public class ProjectDAOImpl implements ProjectDAO {
             ses.saveOrUpdate(pr);
             ses.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("РњР°РјР°, СЏ СѓРїР°Р», С‡С‚Рѕ СЃ Р±Р°Р·РѕР№?");
+            System.out.println("Мама, я упал, что с базой?");
             System.out.println(e.getLocalizedMessage());
         } finally {
             if (ses != null && ses.isOpen()) {
@@ -80,8 +82,7 @@ public class ProjectDAOImpl implements ProjectDAO {
         }
     }
     
-    
-     @Override
+    @Override
     @SuppressWarnings("unchecked")
     public List<Project> getProjectByModId(int id) {
 

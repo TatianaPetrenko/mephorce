@@ -9,7 +9,7 @@
 
     <name>mvntest</name>
 
-    <properties>
+   <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>4.3.5.Final</hibernate.version>
@@ -22,11 +22,39 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+     
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.15</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.jmx</groupId>
+                    <artifactId>jmxri</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jdmk</groupId>
+                    <artifactId>jmxtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.jms</groupId>
+                    <artifactId>jms</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
+  
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>3.1.2.RELEASE</version>
+            <version>4.2.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>javax.persistence</groupId>
@@ -37,15 +65,27 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>4.2.2.RELEASE</version>
+            <version>4.2.4.RELEASE</version>
             <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.2.4.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>4.2.4.RELEASE</version>
         </dependency>
         
         <!-- Hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
+            <version>4.3.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -64,12 +104,7 @@
             <artifactId>jta</artifactId>
             <version>1.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.2.3.RELEASE</version>
-            <type>jar</type>
-        </dependency>
+
     </dependencies>
 
     <build>       
@@ -95,7 +130,7 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
-                    </plugin>
+            </plugin>
             
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -117,10 +152,10 @@
             </plugin>
         </plugins>
         <resources>
-     <resource>
-       <directory>src/main/resources/resources/</directory>
-     </resource>
-   </resources>
+            <resource>
+                <directory>src/main/resources/resources/</directory>
+            </resource>
+        </resources>
 
     </build>
 

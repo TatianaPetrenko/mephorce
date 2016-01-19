@@ -15,8 +15,6 @@ import net.tatianap.mvntest.domain.Project;
 public interface ProjectDAO {
 
     public Project getProjectByID(int id);
-
     public void updateProject(int id);
-
     public List<Project> getProjectByModId(int id);
 }

@@ -5,6 +5,7 @@
  */
 package net.tatianap.mvntest.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "tasks")
-public class Task {
+public class Task implements Serializable {
 
     @Id
     @GeneratedValue

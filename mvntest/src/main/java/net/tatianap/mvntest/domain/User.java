@@ -27,16 +27,18 @@ public class User implements Serializable {
     private String name;
     @Column(name = "role")
     private String role;
+    @Column(name="login")
+    private String username;
+    @Column(name="passw")
+    private String password;
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Project> projects = new HashSet<>();
-@OneToOne (mappedBy="user")
-private Task task;
+    @OneToOne (mappedBy="user")
+    private Task task;
 
- @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     private Set<Project> projectes = new HashSet<Project>(0);
-    
-
 //    private Task task;
 
     public User() {
@@ -73,7 +75,23 @@ private Task task;
     public void setRole(String role) {
         this.role = role;
     }
+    public String getUsername() {
+        return username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
     public Integer getRate() {
         return rate;
     }
@@ -90,11 +108,12 @@ private Task task;
         this.projects = projects;
     }
 
-    public Set<Project> getProjectes(){
+public Set<Project> getProjectes(){
         return projectes;
     }
 
     public void setProjectes(Set<Project> projectes) {
         this.projectes = projectes;
     }
+
 }

@@ -17,4 +17,8 @@ public interface UserDAO {
     public User getUserByID(int id);
 
     public List<User> listUsers();
+    
+    public void add(User quest);
+    
+     public Integer login(User user);
 }
